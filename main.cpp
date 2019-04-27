@@ -6,7 +6,10 @@ using namespace std;
 
 int main()
 {
-    cout << "Creation de l'image" << endl;
-    ppm_file file("test.ppm", 500, 500, 255);
+    //cout << "Creation de l'image" << endl;
+    //For the moment, create a 1000*1500 image
+    //Dynamic size for a futur update
+    ppm_file file("test", 100, 100, 255);
+
     return 0;
 }

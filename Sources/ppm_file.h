@@ -26,15 +26,9 @@ public:
 
     //Three colors arrays
 
-    /* For futur implementation
     vector<vector<int>> R;
     vector<vector<int>> G;
     vector<vector<int>> B;
-    */
-
-    int R[100][100];
-    int G[100][100];
-    int B[100][100];
 
 
 };

@@ -125,8 +125,14 @@ void ppm_file::ppm_image(unsigned int width, unsigned int height, unsigned int m
 {
     //Creating empty arrays
 
+    R.resize(height);
+    G.resize(height);
+    B.resize(height);
     for(unsigned int i=0; i<height; i++)
     {
+        R[i].resize(width);
+        G[i].resize(width);
+        B[i].resize(width);
         for(unsigned int j=0; j<width; j++)
         {
              R[i][j] = 0;
@@ -134,15 +140,23 @@ void ppm_file::ppm_image(unsigned int width, unsigned int height, unsigned int m
              B[i][j] = 0;
         }
     }
-    cout << "Initialisation des valeurs terminee" << endl;
 
     //Creating a general_noise object
     general_noise noise;
     noise.add_general_noise(width, height);
+    /*for(unsigned int i=0; i<height; i++)
+    {
+        for(unsigned int j=0; j<width; j++)
+        {
+            //R.push_back(get_int_value(max_level));
+            //G.push_back(get_int_value(max_level));
+            //B.push_back(get_int_value(max_level));
+        }
+    }
     cout << "Generation terminee !" << endl;
+    */
 
     //Writing the file
-
     cout << "Ecriture du fichier en cours ..." << endl;
     for(unsigned int i=0; i<height; i++)
     {
@@ -150,16 +164,51 @@ void ppm_file::ppm_image(unsigned int width, unsigned int height, unsigned int m
         {
             //R
             *this << R[i][j] << endl;
+            *this << "\t";
             //G
             *this << G[i][j] << endl;
+            *this << "\t";
             //B
             *this << B[i][j] << endl;
+            *this << "\n";
         }
     }
 
     close();
 }
 
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/*                                                                                               */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+/**
+ * @brief ppm_file::get_int_value
+ * This function normalizes the pixel value
+ * @param max_level the max_level of the image
+ * @return
+ */
+
+// I have a problem : max_level = 0 when I don't send it as an argument in the function. I don't understang
+// why, because max_level is in the class ppm_file.
+/*
+int ppm_file::get_int_value(unsigned int gain)
+{
+    float raw_random_number = distri(generator);
+
+    if (raw_random_number > 1)
+        raw_random_number = 1;
+    else if(raw_random_number < -1)
+        raw_random_number = -1;
+
+    float normalized_random_number = raw_random_number * gain;
+
+    int int_normalized_random_number = round(abs(normalized_random_number));
+
+    return int_normalized_random_number;
+}
+*/
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /*                                                                                               */
@@ -190,23 +239,3 @@ uniform_int_distribution<std::mt19937::result_type> distb(0,max_level);*/
 normal_distribution<unsigned int> distr(0, max_level);
 normal_distribution<unsigned int> distg(0, max_level);
 normal_distribution<unsigned int> distb(0, max_level);*/
-
-
-
-//Siez of vectors
-/*
-R.resize(height);
-G.resize(height);
-B.resize(height);
-for(unsigned int i=0; i<height; i++)
-{
-    R[i].resize(width);
-    G[i].resize(width);
-    B[i].resize(width);
-    for(unsigned int j=0; j<width; j++)
-    {
-         R[i][j] = 0;
-         G[i][j] = 0;
-         B[i][j] = 0;
-    }
-}*/
