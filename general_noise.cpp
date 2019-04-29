@@ -49,12 +49,12 @@ void general_noise::add_general_noise(unsigned int width, unsigned int height)
     {
         for(unsigned int j=0; j<height; j++)
         {
-            int test = get_int_value(10);
+            int test = get_int_value(100);
             //cout << test << endl;
             R[i][j] = test;
             G[i][j] = test;
             B[i][j] = test;
-            cout << B[i][j] << endl;
+            cout << R[i][j] << endl;
         }
     }
 

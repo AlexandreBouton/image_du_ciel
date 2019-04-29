@@ -2,11 +2,13 @@
 #include<vector>
 #include<random>
 #include<chrono>
+#include<new>
 #include "ppm_file.h"
 #include "general_noise.h"
 
 using namespace std;
 //ppm_file file;
+
 
 /*
 //seed creation, based on date
@@ -138,7 +140,6 @@ void ppm_file::ppm_image(unsigned int width, unsigned int height, unsigned int m
 
     //Creating a general_noise object
     general_noise noise;
-    noise.add_general_noise(width, height);
     cout << "Generation terminee !" << endl;
 
     //Writing the file
